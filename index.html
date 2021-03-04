@@ -1,0 +1,54 @@
+<body></body>
+<script src="/three.js"></script>
+<script>
+  // The "scene" is where stuff in our game will happen:
+  var scene = new THREE.Scene();
+  var flat = {flatShading: true};
+  var light = new THREE.AmbientLight('white', 0.8);
+  scene.add(light);
+
+  // The "camera" is what sees the stuff:
+  var aspectRatio = window.innerWidth / window.innerHeight;
+  var camera = new THREE.PerspectiveCamera(75, aspectRatio, 1, 10000);
+  camera.position.z = 500;
+  scene.add(camera);
+
+  // The "renderer" draws what the camera sees onto the screen:
+  var renderer = new THREE.WebGLRenderer({antialias: true});
+  renderer.setSize(window.innerWidth, window.innerHeight);
+  document.body.appendChild(renderer.domElement);
+
+  // ******** START CODING ON THE NEXT LINE ********
+  var cubo = new THREE.BoxGeometry(500,20,300);
+  var cubo2 = new THREE.BoxGeometry(20,200,20);
+  var cubo3 = new THREE.BoxGeometry(20,200,20);
+  var cubo4 = new THREE.BoxGeometry(20,200,20);
+  var cubo5 = new THREE.BoxGeometry(20,200,20);
+  var material = new THREE.MeshNormalMaterial(flat);
+  var cubo_flat = new THREE.Mesh(cubo, material);
+  var cubo2_flat = new THREE.Mesh(cubo2,material);
+  var cubo3_flat = new THREE.Mesh(cubo3, material);
+  var cubo4_flat = new THREE.Mesh(cubo4, material);
+  var cubo5_flat = new THREE.Mesh(cubo5, material);
+  
+  scene.add(cubo_flat);
+  scene.add(cubo2_flat);
+  scene.add(cubo3_flat);
+  scene.add(cubo4_flat);
+  scene.add(cubo5_flat);
+  cubo_flat.rotation.set(0,0,0);
+  cubo2_flat.position.set(-220,-100,130);
+  cubo3_flat.position.set(220,-100,130);
+  cubo4_flat.position.set(220,-100,-100);
+  cubo5_flat.position.set(-220,-100,-100);
+  
+  camera.position.set(150,-50,500);
+  camera.lookAt(cubo_flat.position);
+  
+  
+
+
+
+  // Now, show what the camera sees on the screen:
+  renderer.render(scene, camera);
+</script>
